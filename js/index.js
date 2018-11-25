@@ -169,6 +169,258 @@ var map = new ol.Map({
 				params: {LAYERS: 'isla'}//por defecto version WMS = 1.3.0
 			})
 		}),
+
+		
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Limite Politico Administrativo",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'limite_politico_administrativo_lim'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Localidades",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'localidades'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Lineas De COnduccion Energetica",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'líneas_de_conducción_ene'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Marcas y Señales",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'marcas_y_señales'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Muro_Embalse",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'muro_embalse'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Obras de Comunicacion",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'obra_de_comunicación'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Obras Portuarias",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'obra_portuaria'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Otras Edificaciones",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'otras_edificaciones'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Paises Limitrofes",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'pais_lim'}//por defecto version WMS = 1.3.0
+			})
+		}),
+		
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Provincias",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'provincias'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Puntos de puentes red vial",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'puente_red_vial_puntos'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+	new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Puntos de Alturas Topograficas",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'puntos_de_alturas_topograficas'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Puntos del Terreno",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'puntos_del_terreno'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Red Ferroviaria",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'red_ferroviaria'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Red Vial",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'red_vial'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Salvado de Obstaculo",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'salvado_de_obstaculo'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Señalizaciones",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'señalizaciones'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Suelo Congelado",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'sue_congelado'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Suelo Consolidado",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'sue_consolidado'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Suelo Costero",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'sue_costero'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Suelo Hidromorfologico",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'sue_hidromorfologico'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Suelo No Consolidado",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'sue_no_consolidado'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Vegetacion Arborea",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'veg_arborea'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Vegetacion Arbustiva",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'veg_arbustiva'}//por defecto version WMS = 1.3.0
+			})
+		}),
+		
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Vegetacion Hidrofila",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'veg_hidrofila'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Vegetacion de Suelo Desnudo",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'veg_suelo_desnudo'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Vias Secundarias",
+			visible: false,
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'vias_secundarias'}//por defecto version WMS = 1.3.0
+			})
+		}),
+				
+		
 	],
 	view: new ol.View({
 		projection: 'EPSG:4326',
