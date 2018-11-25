@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+	    <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/ol.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+
+		<title>GIS 2018 LP app</title>
+
+        <script src="jquery.min.js" type="text/javascript" ></script>
+        <script src="ol4/build/ol.js" type="text/javascript"></script>
+
+	</head>
+
+    <body>
+
+        <!-- tag H1 con un texto -->
+        <h1>GIS 2018 LP app</h1>
+
+        <!-- DIV que contiene el mapa -->
+        <div id="map" class="map"></div>
+
+        <script src="js/index.js" type="text/javascript"></script>
+
+
+	<div id="panel">
+		<h3>Capas</h3>
+		<!-- checkboxes para activar/desactivar las capas -->
+		<script>
+			layers = map.getLayers();
+			layers.forEach(function(layer) {
+				var chk = document.createElement("input");
+				var panel = document.getElementById("panel")
+				chk.setAttribute("type", "checkbox");
+				chk.setAttribute("id", "chk_" + layer.get("title"));
+				chk.setAttribute("onchange", "toggle(this)");
+				if (layer.getVisible()){
+					chk.setAttribute("checked", "true");
+				}
+
+				var lbl = document.createElement("label");
+				var br = document.createElement("br");
+				lbl.setAttribute("for", chk.id);
+				panel.appendChild(chk);
+				panel.appendChild(lbl);
+				panel.appendChild(br);
+				lbl.innerHTML = layer.get("title");
+			});
+			//toggle
+			function toggle(chk){
+				layers.forEach(function(layer) {
+					if (chk.id.slice(4) == layer.get("title")){
+						layer.setVisible(chk.checked);
+				}
+			});
+			}
+        </script>
+		</script>
+	</div>
+	</body>
+</html>

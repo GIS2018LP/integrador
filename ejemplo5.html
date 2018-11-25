@@ -31,7 +31,7 @@
             <!-- checkboxes para activar/desactivar las capas -->
             <input type="checkbox" id="check_layer_1"><label for="check_layer_1"> Red Vial</label><br/>
             <input type="checkbox" id="check_layer_2"><label for="check_layer_2">Vegetacion Cultivos</label><br/>
-            <input type="checkbox" id="check_layer_3"><label for="check_layer_3">Vegetacion Arborea</label><br/>
+	    <input type="checkbox" id="check_layer_3" onchange="toggle(this)"><label for="check_layer_3">Vegetacion Arborea</label><br/>
 
 
             <!-- Radio buttons para cambiar las interacciones activas -->
@@ -183,7 +183,7 @@
                     checkbox2.checked = visible;
                 }
             });
-
+/*
             var checkbox3 = document.getElementById('check_layer_3');
             checkbox3.addEventListener('change', function () {
                 var checked = this.checked;
@@ -198,8 +198,11 @@
                     checkbox3.checked = visible;
                 }
             });
+*/
 
-
+		function toggle(chk) {
+			veg_arbo.setVisible(chk.checked);
+		}
         </script>
     </body>
 </html>

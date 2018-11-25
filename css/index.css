@@ -1,0 +1,14 @@
+.map{
+	position: absolute;
+	bottom: 0;
+	top: 12.5%;
+	left: 25%;
+	right: 0;
+	width: 75%;
+}
+
+#panel{
+	width: 25%;
+	float: left;
+	background-color: #EEE;
+}
