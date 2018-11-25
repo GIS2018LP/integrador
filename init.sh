@@ -1,2 +1,2 @@
 #!/bin/bash
-ln -s . /var/www/html/integrador
+ln -s `pwd` /var/www/html/integrador
