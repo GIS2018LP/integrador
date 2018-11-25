@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>	
 	    <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="css/ol.css">
+        <link rel="stylesheet" type="text/css" href="ol4/css/ol.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
 
 		<title>GIS 2018 LP app</title>
@@ -22,10 +22,10 @@
 
         <script src="js/index.js" type="text/javascript"></script>
 
-
 	<div id="panel">
 		<h3>Capas</h3>
-		<!-- checkboxes para activar/desactivar las capas -->
+        <script src="js/app.js" type="text/javascript"></script>
+		<!-- checkboxes para activar/desactivar las capas 
 		<script>
 			layers = map.getLayers();
 			layers.forEach(function(layer) {
@@ -51,11 +51,10 @@
 				layers.forEach(function(layer) {
 					if (chk.id.slice(4) == layer.get("title")){
 						layer.setVisible(chk.checked);
-				}
-			});
+					}
+				});
 			}
-        </script>
-		</script>
+		</script>-->
 	</div>
 	</body>
 </html>
