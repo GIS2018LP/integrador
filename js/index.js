@@ -1,6 +1,6 @@
 //import {defaults as defaultControls, ScaleLine} from 'ol/control.js';
 
-var URL_OGC = '/cgi-bin/qgis_mapserv.fcgi?map=/var/www/html/integrador/asd.qgs'
+var URL_OGC = '/cgi-bin/qgis_mapserv.fcgi?map=/var/www/html/integrador/integrador.qgz'
 var scaleLineCtrl = new ol.control.ScaleLine();
 var map = new ol.Map({
 	target: 'map',
