@@ -2,6 +2,14 @@
 
 header('Content-type: text/html; charset=utf-8;');
 $punto =  $_GET['punto'];
+$nombre =  $_GET['nombre'];
+$tipo =  $_GET['tipo'];
+$situacion =  $_GET['situacion'];
+$precision =  $_GET['precision'];
+$fuente =  $_GET['fuente'];
+$operador =  $_GET['operador'];
+$responsable =  $_GET['responsable'];
+$cargo =  $_GET['cargo'];
 
 
 $link= pg_connect("host=localhost user=user password=user dbname=integrador");
@@ -18,7 +26,7 @@ $link= pg_connect("host=localhost user=user password=user dbname=integrador");
 $query=<<<EOD
 INSERT INTO romper 
 VALUES
-( (SELECT MAX(gid) FROM romper) + 1, 'prueba', 'prueba', '', 'Definido', 'Menor de 1:250000 a 1:500000', 92005, 'IGN', 'Gutierrez', 'Estructuras Económicas', 'Actividades Agropecuarias', 'Sergio Cimbaro', 'Dir. Gral. Serv. Geográfico', '', '', '', 'Posgar94', 'WGS 84', '2010', '', '20100817', '', 0, 0, 0.000000000000000, 0, 0, 0, ST_geomfromtext('$punto',4326));
+( (SELECT MAX(gid) FROM romper) + 1, '$nombre', '$tipo', '$situacion', '$precision', 'Menor de 1:250000 a 1:500000', 92005, '$fuente', '$operador', 'Estructuras Económicas', 'Actividades Agropecuarias', '$responsable', '$cargo', '', '', '', 'Posgar94', 'WGS 84', '2010', '', '20100817', '', 0, 0, 0.000000000000000, 0, 0, 0, ST_geomfromtext('$punto',4326));
 
 
 
@@ -72,9 +80,8 @@ while ($row = pg_fetch_row($result)) {
 	</head>
 <body>
 
-<h3>Nro. Registros: <?php echo $nro_registros;?></h3>
-<table border=1 cellpading=0 cellspacing=0>
-<?php echo $header ?>
-<?php echo $cuerpo ?>
-</table>
+	<script>
+		window.top.location.href = 'ejemplo11.html'
+	</script>
+
 </body>
