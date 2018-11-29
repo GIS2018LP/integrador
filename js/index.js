@@ -1,6 +1,6 @@
 //import {defaults as defaultControls, ScaleLine} from 'ol/control.js';
 
-var URL_OGC = '/cgi-bin/qgis_mapserv.fcgi?map=/var/www/html/integrador/integrador.qgz'
+var URL_OGC = '/cgi-bin/qgis_mapserv.fcgi?map=/var/www/html/integrador/asd.qgs'
 var scaleLineCtrl = new ol.control.ScaleLine();
 var map = new ol.Map({
 	target: 'map',
@@ -443,6 +443,25 @@ var map = new ol.Map({
 			})
 		}),
 
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Vegetacion Cultivos",
+			visible: false,
+			name: 'veg_cultivos',
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'veg_cultivos'}//por defecto version WMS = 1.3.0
+			})
+		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Vegetacion Hidrofila",
+			visible: false,
+			name: 'veg_hidrofila',
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'veg_hidrofila'}//por defecto version WMS = 1.3.0
+			})
+		}),
 
 		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
 			title: "Vegetacion Arbustiva",
@@ -454,15 +473,6 @@ var map = new ol.Map({
 			})
 		}),
 		
-		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
-			title: "Vegetacion Hidrofila",
-			visible: false,
-			name: 'veg_hidrofila',
-			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
-				url: URL_OGC,
-				params: {LAYERS: 'veg_hidrofila'}//por defecto version WMS = 1.3.0
-			})
-		}),
 
 		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
 			title: "Vegetacion de Suelo Desnudo",
@@ -483,7 +493,6 @@ var map = new ol.Map({
 				params: {LAYERS: 'vias_secundarias'}//por defecto version WMS = 1.3.0
 			})
 		}),
-
 
 				
 		
