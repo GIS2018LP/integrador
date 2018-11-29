@@ -31,10 +31,12 @@
         <div id="panel">
             <h3>Capas</h3>
             <!-- checkboxes para activar/desactivar las capas -->
-            <input type="checkbox" id="check_layer_1"><label for="check_layer_1"> Red Vial</label><br/>
-            <input type="checkbox" id="check_layer_2"><label for="check_layer_2">Vegetacion Cultivos</label><br/>
-            <input type="checkbox" id="check_layer_3"><label for="check_layer_3">Vegetacion Arborea</label><br/>
-            <input type="checkbox" id="check_layer_4"><label for="check_layer_4">Espejos de Agua</label><br/>
+            <div id="form1">
+                <input type="checkbox" id="red_vial" onchange="soloUno('form1', this)"><label for="red_vial"> Red Vial</label><br/>
+                <input type="checkbox" id="check_layer_2" onchange="soloUno('form1', this)"><label for="check_layer_2">Vegetacion Cultivos</label><br/>
+                <input type="checkbox" id="veg_arborea" onchange="soloUno('form1', this)"><label for="veg_arborea">Vegetacion Arborea</label><br/>
+                <input type="checkbox" id="espejo_de_agua_hid" onchange="soloUno('form1', this)"><label for="espejo_de_agua_hid">Espejos de Agua</label><br/>
+            </div>
 
 
             <!-- Radio buttons para cambiar las interacciones activas -->
@@ -61,6 +63,10 @@
 
         <!-- SCRIPT que crea el mapa y sus capas -->
         <script type="text/javascript">
+            
+
+            var capa;
+
 
             //creo un source de tipo Vector
             var vectorSource = new ol.source.Vector({
@@ -103,7 +109,7 @@
 				})
             });
 
-
+           
 
             var red_vial = new ol.layer.Image({
                 title: "Red Vial",
@@ -158,39 +164,79 @@
 
 
 
-//function que va a realizar la peticion de la consulta
-var consultar = function(coordinate){
 
 
-	console.log(coordinate);
-	if(coordinate.length==2){
-		//es un punto [lon,lat]
-		var wkt='POINT('+coordinate[0]+' ' +coordinate[1]+')';
-	}else{
-		//es un poligono en la forma [ [ [lon,lat],[lon,lat],....] ]
-		var wkt = 'POLYGON((';
-		for(var i=0;i<coordinate[0].length - 1;i++){
-			wkt+=coordinate[0][i][0]+ ' ' + coordinate[0][i][1]+ ',';
-		}
-		wkt+=coordinate[0][0][0]+' '+coordinate[0][0][1]+'))'
-	}
-	console.log(wkt);
-	window.open('consulta.php?wkt='+wkt);return;
-
-        // jQuery.ajax({
-        //     url:'consulta.php',
-        //     method: 'GET',
-        //     data:{
-        //         wkt:wkt
-        //     },
-        //     success:function(data){
-        //         console.log(data);
-        //     }
-        // });
-        
 
 
-};
+
+
+
+
+            var capas = [red_vial, veg_culti, veg_arbo, vectorLayer];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //function que va a realizar la peticion de la consulta
+            var consultar = function(coordinate, capa){
+
+                
+                if (capa == undefined){
+                    alert('Para la consulta debe estar seleccionada una capa');
+                }else{
+
+                    console.log(coordinate);
+                    if(coordinate.length==2){
+                        //es un punto [lon,lat]
+                        var wkt='POINT('+coordinate[0]+' ' +coordinate[1]+')';
+                    }else{
+                        //es un poligono en la forma [ [ [lon,lat],[lon,lat],....] ]
+                        var wkt = 'POLYGON((';
+                        for(var i=0;i<coordinate[0].length - 1;i++){
+                            wkt+=coordinate[0][i][0]+ ' ' + coordinate[0][i][1]+ ',';
+                        }
+                        wkt+=coordinate[0][0][0]+' '+coordinate[0][0][1]+'))'
+                    }
+                    console.log(wkt);
+                    
+                    
+
+                    window.open('consulta.php?wkt='+wkt+'&capa='+capa);return;
+
+                        // jQuery.ajax({
+                        //     url:'consulta.php',
+                        //     method: 'GET',
+                        //     data:{
+                        //         wkt:wkt
+                        //     },
+                        //     success:function(data){
+                        //         console.log(data);
+                        //     }
+                        // });
+                }      
+
+
+            };
 
 
             var selectInteraction = new ol.interaction.DragBox(
@@ -208,7 +254,7 @@ var consultar = function(coordinate){
             selectInteraction.on('boxend', function (evt) {
                 //this: referencia al selectInteraction
                 console.log('boxend', this.getGeometry().getCoordinates());
-                consultar(selectInteraction.getGeometry().getCoordinates());
+                consultar(selectInteraction.getGeometry().getCoordinates(), capa);
 
             });
 
@@ -216,7 +262,7 @@ var consultar = function(coordinate){
             var clickEnMapa = function (evt) {
                 //muestro por consola las coordenadas del evento
                 console.log('click',evt.coordinate);
-                consultar(evt.coordinate);
+                consultar(evt.coordinate, capa);
             };
 
 
@@ -224,6 +270,18 @@ var consultar = function(coordinate){
             //function para "cambiar" de interaction en function del value de los radios
             var seleccionarControl = function (el) {
                 if (el.value == "consulta") {
+
+                    
+                    //BETO
+                    //LIMPIA TODAS LAS CAPAS SELECCIONADAS POR SI SE SELECCIONO MAS DE UNA 
+                    //CUANDO ESTABA SELECCIONADO EL CONTROL DE NAVEGACION
+                    for (j=1; cap = map.getLayers().getArray()[j]; j++){
+                        cap.setVisible(false);
+                    }
+
+
+
+
                     //agrego la interaccion del dragbox
                     //la cual tiene precedencia sobre las otras
                     map.addInteraction(selectInteraction);
@@ -245,7 +303,7 @@ var consultar = function(coordinate){
 
 
             //obtengo una referencia al elemento HTML
-            var checkbox1 = document.getElementById('check_layer_1');
+            var checkbox1 = document.getElementById('red_vial');
             //agrego un listener al evento change del checkbox
             checkbox1.addEventListener('change', function () {
                 var checked = this.checked;
@@ -281,7 +339,7 @@ var consultar = function(coordinate){
                 }
             });
 
-            var checkbox3 = document.getElementById('check_layer_3');
+            var checkbox3 = document.getElementById('veg_arborea');
             checkbox3.addEventListener('change', function () {
                 var checked = this.checked;
                 if (checked !== veg_arbo.getVisible()) {
@@ -296,7 +354,7 @@ var consultar = function(coordinate){
                 }
             });
 
-            var checkbox4 = document.getElementById('check_layer_4');
+            var checkbox4 = document.getElementById('espejo_de_agua_hid');
             checkbox4.addEventListener('change', function () {
                 var checked = this.checked;
                 if (checked !== vectorLayer.getVisible()) {
@@ -310,6 +368,82 @@ var consultar = function(coordinate){
                     checkbox4.checked = visible;
                 }
             });
+
+
+
+            
+
+
+
+            /*
+            function activarCapa(checkboxElem){
+                capa = 'red_vial';
+            }
+
+            
+            
+            function setCapa(checkboxElem) {
+                if (checkboxElem.checked) {
+                    capa = 'red_vial';
+                }
+            }
+            
+
+            window.onload = function() {
+                var input = document.querySelector('check_layer_1');
+                if (input) {   
+                    input.addEventListener('change', setCapa, false);
+                }
+            }
+            */
+
+
+            function consultarCapa(id){
+                if(document.getElementById(id).checked) {
+                    capa = 'red_vial';
+                }else{
+                    capa = undefined;
+                }
+            }
+
+
+
+
+            function soloUno(formu, obj) {
+                //limite = 1; //limite de checks a seleccionar
+                //num = 0;
+
+                if (document.getElementById('controles_consulta').checked == true){
+
+
+
+                    if (obj.checked) {
+                        for (i=0; ele=document.getElementById(formu).children[i]; i++){
+                            if (ele.checked){
+                                ele.checked = false;
+                                
+                                //BETO
+                                //Le pongo que comience a tratar el arreglo desde la posicion 1, 
+                                //poque el que esta en la posicion 0 es la capa mamá..
+                                //Después está la otra opción de hacer a parte una variable que 
+                                //sea un arreglo de las capas..
+                                for (j=1; cap = map.getLayers().getArray()[j]; j++){
+                                    cap.setVisible(false);
+                                }
+                            };
+                        }
+                    }
+                    /*
+                    if (num>limite){
+                        obj.checked=false;
+                    }
+                    */
+                    obj.checked = true;
+
+                    capa = obj.id;
+
+                }
+            }  
 
 
 

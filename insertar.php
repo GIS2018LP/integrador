@@ -1,18 +1,26 @@
 <?php
 
 header('Content-type: text/html; charset=utf-8;');
-$wkt =  $_GET['wkt'];
-$capa =  $_GET['capa'];
+$punto =  $_GET['punto'];
 
 
 $link= pg_connect("host=localhost user=user password=user dbname=integrador");
 
+// $query=<<<EOD
+// SELECT * FROM $capa WHERE 
+// st_intersects(
+// ST_geomfromtext('$wkt',4326),
+// geom
+// )
+
+
+
 $query=<<<EOD
-SELECT * FROM $capa WHERE 
-st_intersects(
-ST_geomfromtext('$wkt',4326),
-geom
-)
+INSERT INTO romper 
+VALUES
+( (SELECT MAX(gid) FROM romper) + 1, 'prueba', 'prueba', '', 'Definido', 'Menor de 1:250000 a 1:500000', 92005, 'IGN', 'Gutierrez', 'Estructuras Económicas', 'Actividades Agropecuarias', 'Sergio Cimbaro', 'Dir. Gral. Serv. Geográfico', '', '', '', 'Posgar94', 'WGS 84', '2010', '', '20100817', '', 0, 0, 0.000000000000000, 0, 0, 0, ST_geomfromtext('$punto',4326));
+
+
 
 EOD;
 
