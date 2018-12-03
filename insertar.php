@@ -77,11 +77,28 @@ while ($row = pg_fetch_row($result)) {
 				font-size: 11px;			
 			}
 		</style>
+
+		<style>
+			h1 { 
+				display: block;
+				font-size: 2em;
+				margin-top: 0.67em;
+				margin-bottom: 0.67em;
+				margin-left: 0;
+				margin-right: 0;
+				font-weight: bold;
+			}
+		</style>
+
 	</head>
 <body>
 
+	<!--
 	<script>
-		window.top.location.href = 'ejemplo11.html'
+		window.top.location.href = 'cards2.html'
 	</script>
+		-->
+
+	<h1>¡INSERCION EXTIOSA!</h1>
 
 </body>

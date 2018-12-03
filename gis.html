@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>GIS TPI</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="icon" href="images/favicon.png" type="image/x-icon">
+        
+        <!-- Google Fonts -->	
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+        
+        <!-- Bootstrap Stylesheet -->	
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+        
+        <!-- Font Awesome Stylesheet -->
+        <link rel="stylesheet" href="resources/css/font-awesome.min.css">
+            
+        <!-- Custom Stylesheets -->	
+        <link rel="stylesheet" href="resources/css/style.css">
+        <link rel="stylesheet" id="cpswitch" href="resources/css/orange.css">
+        <link rel="stylesheet" href="resources/css/responsive.css">
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- BETO -->
+        <link rel="stylesheet" href="https://openlayers.org/en/v4.4.2/css/ol.css" type="text/css">
+
+
+        <link rel="stylesheet" href="ol4/css/ol.css" type="text/css">
+        <style>
+            #map {
+                height: 610px;
+                width: 70%;
+                float: left;
+            }
+            #panel{
+                height: 610px;
+                width: 30%;
+                float: right;            
+            }
+        </style>
+        <title>OpenLayers 4 example</title>
+        <script src="ol4/build/ol-debug.js" type="text/javascript"></script>
+        <script src="url.js" type="text/javascript"></script>
+        <!--agregamos la libreria JQuery -->
+        <script src="jquery.min.js" type="text/javascript"></script>
+        
+        <script src="https://openlayers.org/en/v4.4.2/build/ol.js"></script>
+        <style>
+            .tooltip {
+                position: relative;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 4px;
+                color: white;
+                padding: 4px 8px;
+                opacity: 0.7;
+                white-space: nowrap;
+            }
+            .tooltip-measure {
+                opacity: 1;
+                font-weight: bold;
+            }
+            .tooltip-static {
+                background-color: #ffcc33;
+                color: black;
+                border: 1px solid white;
+            }
+            .tooltip-measure:before,
+            .tooltip-static:before {
+                border-top: 6px solid rgba(0, 0, 0, 0.5);
+                border-right: 6px solid transparent;
+                border-left: 6px solid transparent;
+                content: "";
+                position: absolute;
+                bottom: -6px;
+                margin-left: -7px;
+                left: 50%;
+            }
+            .tooltip-static:before {
+                border-top-color: #ffcc33;
+            }    
+        </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+    
+    
+    <body>
+    
+        <!--====== LOADER =====-->
+        <div class="loader"></div>
+    
+    
+    	<!--======== SEARCH-OVERLAY =========-->       
+        <div class="overlay">
+            <a href="javascript:void(0)" id="close-button" class="closebtn">&times;</a>
+            <div class="overlay-content">
+                <div class="form-center">
+                    <form>
+                    	<div class="form-group">
+                        	<div class="input-group">
+                        		<input type="text" class="form-control" placeholder="Consulta SQL" required />
+                            	<span class="input-group-btn"><button type="submit" class="btn"><span><i class="fa fa-search"></i></span></button></span>
+                            </div><!-- end input-group -->
+                        </div><!-- end form-group -->
+                    </form>
+                </div><!-- end form-center -->
+            </div><!-- end overlay-content -->
+        </div><!-- end overlay -->
+        
+        
+        <!--============= TOP-BAR ===========-->
+        <div id="top-bar" class="tb-text-white">
+            <div class="container">
+                <div class="row">          
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div id="info">
+                            <ul class="list-unstyled list-inline">
+                                <li><span><i class="fa fa-map-marker"></i></span>Calle Falsa 1234</li>
+                                <li><span><i class="fa fa-phone"></i></span>+00 123 4567</li>
+                            </ul>
+                        </div><!-- end info -->
+                    </div><!-- end columns -->
+                    
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div id="links">
+                            
+                                
+                                <li>
+                                	<form>
+                                    	<ul class="list-inline">
+                                        	
+										</ul>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div><!-- end links -->
+                    </div><!-- end columns -->				
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end top-bar -->
+
+        <nav class="navbar navbar-default main-navbar navbar-custom navbar-white" id="mynavbar-1">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" id="menu-button">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>                        
+                    </button>
+                    <div class="header-search hidden-lg">
+                    	<a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a>
+                    </div>
+                    <a href="#" class="navbar-brand"><span><i class="fa fa-plane"></i>GIS</span> 2018</a>
+                </div><!-- end navbar-header -->
+                
+                <div class="collapse navbar-collapse" id="myNavbar1">
+                    <ul class="nav navbar-nav navbar-right navbar-search-link">
+                        
+                            		
+                        </li>
+                       
+                            <ul class="dropdown-menu mega-dropdown-menu row">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>			
+                        </li>
+                        <li><a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a></li>
+                    </ul>
+                </div><!-- end navbar collapse -->
+            </div><!-- end container -->
+        </nav><!-- end navbar -->
+        
+        <div class="sidenav-content">
+            <div id="mySidenav" class="sidenav" >
+                <h2 id="web-name"><span><i class="fa fa-plane"></i></span>Star Travel</h2>
+
+                <div id="main-menu">
+                	<div class="closebtn">
+                        <button class="btn btn-default" id="closebtn">&times;</button>
+                    </div><!-- end close-btn -->
+                    
+                    <div class="list-group panel">
+                    
+                        <a href="#home-links" class="list-group-item" data-toggle="collapse" data-parent="#main-menu"><span><i class="fa fa-home link-icon"></i></span>Home<span><i class="fa fa-chevron-down arrow"></i></span></a>
+                        <div class="collapse sub-menu" id="home-links">
+                            <a href="index.html" class="list-group-item">Main Homepage</a>
+                            <a href="flight-homepage.html" class="list-group-item">Flight Homepage</a>
+                            <a href="hotel-homepage.html" class="list-group-item">Hotel Homepage</a>
+                            <a href="tour-homepage.html" class="list-group-item">Tour Homepage</a>
+                            <a href="cruise-homepage.html" class="list-group-item">Cruise Homepage</a>
+                            <a href="car-homepage.html" class="list-group-item">Car Homepage</a>
+                            <a href="landing-page.html" class="list-group-item">Landing Page</a>
+                        </div><!-- end sub-menu -->
+                        
+                        <a href="#flights-links" class="list-group-item" data-toggle="collapse" data-parent="#main-menu"><span><i class="fa fa-plane link-icon"></i></span>Flights<span><i class="fa fa-chevron-down arrow"></i></span></a>
+                        <div class="collapse sub-menu" id="flights-links">
+                            <a href="flight-homepage.html" class="list-group-item">Flight Homepage</a>
+                            <a href="flight-listing-left-sidebar.html" class="list-group-item">List View Left Sidebar</a>
+                            <a href="flight-listing-right-sidebar.html" class="list-group-item">List View Right Sidebar</a>
+                            <a href="flight-grid-left-sidebar.html" class="list-group-item">Grid View Left Sidebar</a>
+                            <a href="flight-grid-right-sidebar.html" class="list-group-item">Grid View Right Sidebar</a>
+                            <a href="flight-detail-left-sidebar.html" class="list-group-item">Detail Left Sidebar</a>
+                            <a href="flight-detail-right-sidebar.html" class="list-group-item">Detail Right Sidebar</a>
+                        </div><!-- end sub-menu -->
+                        
+                        <a href="#hotels-links" class="list-group-item" data-toggle="collapse" data-parent="#main-menu"><span><i class="fa fa-building link-icon"></i></span>Hotels<span><i class="fa fa-chevron-down arrow"></i></span></a>
+                        <div class="collapse sub-menu" id="hotels-links">
+                            <a href="hotel-homepage.html" class="list-group-item">Hotel Homepage</a>
+                            <a href="hotel-listing-left-sidebar.html" class="list-group-item">List View Left Sidebar</a>
+                            <a href="hotel-listing-right-sidebar.html" class="list-group-item">List View Right Sidebar</a>
+                            <a href="hotel-grid-left-sidebar.html" class="list-group-item">Grid View Left Sidebar</a>
+                            <a href="hotel-grid-right-sidebar.html" class="list-group-item">Grid View Right Sidebar</a>
+                            <a href="hotel-detail-left-sidebar.html" class="list-group-item">Detail Left Sidebar</a>
+                            <a href="hotel-detail-right-sidebar.html" class="list-group-item">Detail Right Sidebar</a>
+                        </div><!-- end sub-menu -->
+                        
+                        <a href="#tours-links" class="list-group-item" data-toggle="collapse" data-parent="#main-menu"><span><i class="fa fa-globe link-icon"></i></span>Tours<span><i class="fa fa-chevron-down arrow"></i></span></a>
+                        <div class="collapse sub-menu" id="tours-links">
+                            <a href="tour-homepage.html" class="list-group-item">Tour Homepage</a>
+                            <a href="tour-listing-left-sidebar.html" class="list-group-item">List View Left Sidebar</a>
+                            <a href="tour-listing-right-sidebar.html" class="list-group-item">List View Right Sidebar</a>
+                            <a href="tour-grid-left-sidebar.html" class="list-group-item">Grid View Left Sidebar</a>
+                            <a href="tour-grid-right-sidebar.html" class="list-group-item">Grid View Right Sidebar</a>
+                            <a href="tour-detail-left-sidebar.html" class="list-group-item">Detail Left Sidebar</a>
+                            <a href="tour-detail-right-sidebar.html" class="list-group-item">Detail Right Sidebar</a>
+                        </div><!-- end sub-menu -->
+                        
+                        <a href="#cruise-links" class="list-group-item" data-toggle="collapse" data-parent="#main-menu"><span><i class="fa fa-ship link-icon"></i></span>Cruise<span><i class="fa fa-chevron-down arrow"></i></span></a>
+                        <div class="collapse sub-menu" id="cruise-links">
+                            <a href="cruise-homepage.html" class="list-group-item">Cruise Homepage</a>
+                            <a href="cruise-listing-left-sidebar.html" class="list-group-item">List View Left Sidebar</a>
+                            <a href="cruise-listing-right-sidebar.html" class="list-group-item">List View Right Sidebar</a>
+                            <a href="cruise-grid-left-sidebar.html" class="list-group-item">Grid View Left Sidebar</a>
+                            <a href="cruise-grid-right-sidebar.html" class="list-group-item">Grid View Right Sidebar</a>
+                            <a href="cruise-detail-left-sidebar.html" class="list-group-item">Detail Left Sidebar</a>
+                            <a href="cruise-detail-right-sidebar.html" class="list-group-item">Detail Right Sidebar</a>
+                        </div><!-- end sub-menu -->
+                        
+                        <a href="#cars-links" class="list-group-item" data-toggle="collapse" data-parent="#main-menu"><span><i class="fa fa-car link-icon"></i></span>Cars<span><i class="fa fa-chevron-down arrow"></i></span></a>
+                        <div class="collapse sub-menu" id="cars-links">
+                            <a href="car-homepage.html" class="list-group-item">Car Homepage</a>
+                            <a href="car-listing-left-sidebar.html" class="list-group-item">List View Left Sidebar</a>
+                            <a href="car-listing-right-sidebar.html" class="list-group-item">List View Right Sidebar</a>
+                            <a href="car-grid-left-sidebar.html" class="list-group-item">Grid View Left Sidebar</a>
+                            <a href="car-grid-right-sidebar.html" class="list-group-item">Grid View Right Sidebar</a>
+                            <a href="car-detail-left-sidebar.html" class="list-group-item">Detail Left Sidebar</a>
+                            <a href="car-detail-right-sidebar.html" class="list-group-item">Detail Right Sidebar</a>
+                        </div><!-- end sub-menu -->
+                        
+                        <a href="#pages-links" class="list-group-item active" data-toggle="collapse" data-parent="#main-menu"><span><i class="fa fa-clone link-icon"></i></span>Pages<span><i class="fa fa-chevron-down arrow"></i></span></a>
+                        <div class="collapse sub-menu" id="pages-links">
+                        	<div class="list-group-heading list-group-item">Standard <span>Pages</span></div>
+                            <a href="about-us.html"  class="list-group-item">About Us</a>
+                            <a href="contact-us.html"  class="list-group-item">Contact Us</a>
+                            <a href="blog-listing-left-sidebar.html"  class="list-group-item">Blog Listing Left Sidebar</a>
+                            <a href="blog-listing-right-sidebar.html"  class="list-group-item">Blog Listing Right Sidebar</a>
+                            <a href="blog-detail-left-sidebar.html"  class="list-group-item">Blog Detail Left Sidebar</a>
+                            <a href="blog-detail-right-sidebar.html"  class="list-group-item">Blog Detail Right Sidebar</a>
+                            <div class="list-group-heading list-group-item">User <span>Dashboard</span></div>
+                            <a href="dashboard.html"  class="list-group-item">Dashboard</a>
+                            <a href="user-profile.html"  class="list-group-item">User Profile</a>
+                            <a href="booking.html"  class="list-group-item">Booking</a>
+                            <a href="wishlist.html"  class="list-group-item">Wishlist</a>
+                            <a href="#"  class="list-group-item active">Cards</a>
+                            <div class="list-group-heading list-group-item">Special <span>Pages</span></div>
+                            <a href="login.html"  class="list-group-item">Login</a>
+                            <a href="registration.html"  class="list-group-item">Registration</a>
+                            <a href="forgot-password.html"  class="list-group-item">Forgot Password</a>
+                            <a href="error-page.html"  class="list-group-item">404 Page</a>
+                            <a href="coming-soon.html"  class="list-group-item">Coming Soon</a>
+                            <div class="list-group-heading list-group-item">Extra <span>Pages</span></div>
+                            <a href="before-you-fly.html" class="list-group-item">Before Fly</a>
+                            <a href="travel-insurance.html" class="list-group-item">Travel Insurance</a>
+                            <a href="holidays.html" class="list-group-item">Holidays</a>
+                            <a href="thank-you.html" class="list-group-item">Thank You</a>
+                        </div><!-- end sub-menu -->
+                    </div><!-- end list-group -->
+                </div><!-- end main-menu -->
+            </div><!-- end mySidenav -->
+        </div><!-- end sidenav-content -->
+        
+        
+        <!--========== PAGE-COVER =========-->
+        <section class="page-cover dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                    	<h1 class="page-title">Explorador de Mapas</h1>
+                        <ul class="breadcrumb">
+                            <li><a href="#">Pagina Principal</a></li>
+                            <li class="active">Explorador de Mapas</li>
+                        </ul>
+                    </div><!-- end columns -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section><!-- end page-cover -->
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <br/><hr/>
+        <!-- DIV que contiene el mapa -->
+        <div id="map"></div>
+
+
+
+        <!-- BETO -->
+        <!-- IMPORTO SCRIPT DE LAS CAPAS DE TUTO -->
+        <script src="js/index.js" type="text/javascript"></script>
+
+
+
+
+
+
+        <div id="panel">
+
+            
+
+            <br/>
+            <!-- Radio buttons para cambiar las interacciones activas -->
+            <h3>Controles</h3>
+            <!-- evento onchange: ejecuta la funcion seleccionarControl -->
+
+
+            <div id="tipoMedida">
+                <input
+                    type="radio"
+                    name="controles"
+                    id="controles_navegacion"
+                    value="navegacion"
+                    checked="checked"
+                    onclick="seleccionarControl(this)"
+                    onchange="verSelector()" 
+
+                    > <label for="controles_navegacion"> Navegacion</label><br/>
+                <input
+                    type="radio"
+                    name="controles"
+                    id="controles_consulta"
+                    value="consulta" 
+                    onclick="seleccionarControl(this)"
+                    onchange="verSelector()" 
+                    > <label for="controles_consulta"> Consulta</label><br/>
+
+
+                
+                <select id="capaConsulta" onchange="verCapa();" style="display: none;">
+                    <option id="porDefecto" value=undefined>Seleccione Una Opción</option>
+                    <script src="js/selector.js" type="text/javascript"></script>
+                </select><br>
+                
+                
+
+
+
+                <!-- BETO -->
+                <input
+                    type="radio"
+                    name="controles"
+                    id="controles_distancia"
+                    value="distancia"
+                    onclick="seleccionarControl(this)"
+                    onchange="verSelector()" 
+                    > <label for="controles_distancia"> Distancia</label><br/>
+
+                <input
+                    type="radio"
+                    name="controles"
+                    id="controles_area"
+                    value="area"
+                    onclick="seleccionarControl(this)"
+                    onchange="verSelector()" 
+                    > <label for="controles_area"> Area</label><br/>
+
+                <input
+                    type="radio"
+                    name="controles"
+                    id="controles_insertar"
+                    value="insertar"
+                    onclick="seleccionarControl(this)"
+                    onchange="verSelector()" 
+                    > <label for="controles_insertar"> Ingresar Datos</label><br/>
+            </div>
+
+
+            <br/><br/>
+
+            <h3>Capas</h3>
+            <!-- checkboxes para activar/desactivar las capas -->
+            <!-- <div id="form1">
+                <input type="checkbox" id="red_vial" onchange="soloUno('form1', this)"><label for="red_vial"> Red Vial</label><br/>
+                <input type="checkbox" id="veg_cultivos" onchange="soloUno('form1', this)"><label for="veg_cultivos">Vegetacion Cultivos</label><br/>
+                <img src="http://localhost/cgi-bin/qgis_mapserv.fcgi?map=/var/www/html/integrador/integrador.qgz&SERVICE=WMS&REQUEST=GetLegendGraphics&FORMAT=image/png&TRANSPARENT=true&LAYERS=veg_cultivos" /><br/>
+                <input type="checkbox" id="veg_arborea" onchange="soloUno('form1', this)"><label for="veg_arborea">Vegetacion Arborea</label><br/>
+                <input type="checkbox" id="espejo_de_agua_hid" onchange="soloUno('form1', this)"><label for="espejo_de_agua_hid">Espejos de Agua</label><br/>
+            </div> -->
+
+            <div id="capasTuto" style="overflow-y: scroll; height:310px;">
+                <script src="js/app.js" type="text/javascript"></script>
+            </div>
+
+
+            
+
+
+
+            <!-- <form id="formDatos">
+                Nombre: <input type="text" id="formDatosNombre" name="nombre"><br>
+                Tipo: <input type="text" id="formDatosTipo" name="tipo"><br>
+                Situación: <input type="text" id="formDatosSituacion" name="tipo"><br>
+                Precisión: 
+                <select id="formDatosPrecision">
+                    <option id="opcionDefinido" value="Definido">Definido</option>
+                    <option id="opcionIndefinido" value="Indefinido">Indefinido</option>
+                </select><br>
+                Fuente: <input type="text" id="formDatosFuente" name="fuente"><br>
+                Operador: <input type="text" id="formDatosOperador" name="operador"><br>
+                Responsable: <input type="text" id="formDatosResponsable" name="responsable"><br>
+                Cargo: <input type="text" id="formDatosCargo" name="cargo"><br>
+
+
+            </form> -->
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- BETO -->
+        <!-- OCULTO -->
+        <form class="form-inline" style="display: none;">
+            <label>Measurement type &nbsp;</label>
+            <select id="type">
+                <option id="opcionLength" value="length">Length (LineString)</option>
+                <option id="opcionArea" value="area">Area (Polygon)</option>
+            </select>
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- SCRIPT que crea el mapa y sus capas -->
+        <script src="js/controles.js" type="text/javascript"></script>
+
+
+
+
+        <a id="modalDatos" href="#add-card" data-toggle="modal"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+        <form id="formDatos">
+                Nombre: <input type="text" id="formDatosNombre" name="nombre"><br>
+                Tipo: <input type="text" id="formDatosTipo" name="tipo"><br>
+                Situación: <input type="text" id="formDatosSituacion" name="tipo"><br>
+                Precisión: 
+                <select id="formDatosPrecision">
+                    <option id="opcionDefinido" value="Definido">Definido</option>
+                    <option id="opcionIndefinido" value="Indefinido">Indefinido</option>
+                </select><br>
+                Fuente: <input type="text" id="formDatosFuente" name="fuente"><br>
+                Operador: <input type="text" id="formDatosOperador" name="operador"><br>
+                Responsable: <input type="text" id="formDatosResponsable" name="responsable"><br>
+                Cargo: <input type="text" id="formDatosCargo" name="cargo"><br>
+
+
+            </form> -->
+
+
+
+
+        <div id="add-card" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Nueva Inserción</h3>
+                    </div><!-- end modal-header -->
+                    
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" id="formDatosNombre" name="nombre" />
+                            </div><!-- end form-group -->
+                            
+                            
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <input type="text" class="form-control" id="formDatosTipo" name="tipo" />
+                            </div><!-- end form-group -->
+                            
+                            <div class="form-group">
+                                <label>Situacion</label>
+                                <input type="text" class="form-control" id="formDatosSituacion" name="situacion" />
+                            </div><!-- end form-group -->
+                            
+                            <div class="form-group">
+                                <label>Precision</label>
+                                <select id="formDatosPrecision">
+                                        <option id="opcionDefinido" value="Definido">Definido</option>
+                                        <option id="opcionIndefinido" value="Indefinido">Indefinido</option>
+                                    </select>
+                            </div><!-- end form-group -->
+                            
+                            <div class="form-group">
+                                <label>Fuente</label>
+                                <input type="text" class="form-control" id="formDatosFuente" name="fuente" />
+                            </div><!-- end form-group -->
+                            
+                            <div class="form-group">
+                                <label>Operador</label>
+                                <input type="text" class="form-control" id="formDatosOperador" name="operador" />
+                            </div><!-- end form-group -->
+                            
+                            <div class="form-group">
+                                <label>Responsable</label>
+                                <input type="text" class="form-control" id="formDatosResponsable" name="responsable" />
+                            </div><!-- end form-group -->
+                            
+                            <div class="form-group">
+                                <label>Cargo</label>
+                                <input type="text" class="form-control" id="formDatosCargo" name="cargo" />
+                            </div><!-- end form-group -->
+
+
+
+
+
+
+                            
+                            <button class="btn btn-orange" onclick="insertarDatos()">Guardar</button>
+                        </form>
+                    </div><!-- end modal-bpdy -->
+                </div><!-- end modal-content -->
+            </div><!-- end modal-dialog -->
+        </div><!-- end add-card -->
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/>
+
+
+
+        <div id="footer-bottom" class="ftr-bot-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright">
+                        <p>© 2018 <a href="#">Los Pibes</a>. Todos Aprobados.</p>
+                    </div><!-- end columns -->
+                    
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
+                        <ul class="list-unstyled list-inline">
+                            <li><a href="#">Términos y Condiciones </a></li>
+                            <li><a href="#">Promoción Directa</a></li>
+                        </ul>
+                    </div><!-- end columns -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end footer-bottom -->
+
+
+
+
+
+        
+        
+        <!-- Page Scripts Starts -->
+        <script src="resources/js/jquery.min.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
+        <script src="resources/js/custom-navigation.js"></script>
+        <!-- Page Scripts Ends -->
+    </body>
+</html>

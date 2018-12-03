@@ -92,10 +92,10 @@ var map = new ol.Map({
 		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
 			title: "Edificios deportivos y de esparcimiento",
 			visible: false,
-			name: 'edif_depor_esparcimiento',
+			name: 'edif_depor_y_esparcimiento',
 			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
 				url: URL_OGC,
-				params: {LAYERS: 'edif_depor_esparcimiento'}//por defecto version WMS = 1.3.0
+				params: {LAYERS: 'edif_depor_y_esparcimiento'}//por defecto version WMS = 1.3.0
 			})
 		}),
 		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
@@ -443,25 +443,6 @@ var map = new ol.Map({
 			})
 		}),
 
-		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
-			title: "Vegetacion Cultivos",
-			visible: false,
-			name: 'veg_cultivos',
-			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
-				url: URL_OGC,
-				params: {LAYERS: 'veg_cultivos'}//por defecto version WMS = 1.3.0
-			})
-		}),
-
-		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
-			title: "Vegetacion Hidrofila",
-			visible: false,
-			name: 'veg_hidrofila',
-			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
-				url: URL_OGC,
-				params: {LAYERS: 'veg_hidrofila'}//por defecto version WMS = 1.3.0
-			})
-		}),
 
 		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
 			title: "Vegetacion Arbustiva",
@@ -472,7 +453,26 @@ var map = new ol.Map({
 				params: {LAYERS: 'veg_arbustiva'}//por defecto version WMS = 1.3.0
 			})
 		}),
+
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Vegetacion Cultivos",
+			visible: false,
+			name: 'veg_cultivos',
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'veg_cultivos'}//por defecto version WMS = 1.3.0
+			})
+		}),
 		
+		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
+			title: "Vegetacion Hidrofila",
+			visible: false,
+			name: 'veg_hidrofila',
+			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)
+				url: URL_OGC,
+				params: {LAYERS: 'veg_hidrofila'}//por defecto version WMS = 1.3.0
+			})
+		}),
 
 		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
 			title: "Vegetacion de Suelo Desnudo",
@@ -493,6 +493,7 @@ var map = new ol.Map({
 				params: {LAYERS: 'vias_secundarias'}//por defecto version WMS = 1.3.0
 			})
 		}),
+
 
 				
 		

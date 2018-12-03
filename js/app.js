@@ -26,9 +26,17 @@ for (j=2; layer = map.getLayers().getArray()[j]; j++){
 	var br = document.createElement("br");
 	lbl.setAttribute("for", chk.id);
 	panel.appendChild(chk);
-	panel.appendChild(lbl);
-	panel.appendChild(br);
+	//panel.appendChild(lbl);
+	//panel.appendChild(br);
 	lbl.innerHTML = layer.get("title");
+	//panel.appendChild(br);
+
+	var imag = document.createElement("IMG"); 
+	imag.setAttribute("src", 'http://localhost/cgi-bin/qgis_mapserv.fcgi?map=/var/www/html/integrador/integrador.qgz&SERVICE=WMS&REQUEST=GetLegendGraphics&FORMAT=image/png&LAYERS=' + layer.get("name"));
+	// imag.setAttribute("width", "10px");
+	// imag.setAttribute("height", "10px");
+	panel.appendChild(imag);
+	panel.appendChild(br);
 };
 //toggle
 function toggle(chk){
