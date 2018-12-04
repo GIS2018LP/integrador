@@ -54,7 +54,7 @@ var map = new ol.Map({
 			})
 		}),
 		new ol.layer.Image({//objeto capa de tipo Imagen (1 sola imagen)
-			title: "Conplejo de energía",
+			title: "Complejo de energía",
 			visible: false,
 			name: 'complejo_de_energia_ene',
 			source: new ol.source.ImageWMS({//fuente de datos (ImageWMS)

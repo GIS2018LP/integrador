@@ -503,8 +503,14 @@ var consultar = function(coordinate, capa){
             //es un punto [lon,lat]
             var wkt='POINT('+coordinate[0]+' ' +coordinate[1]+')';
 
-            window.open('consultapunto.php?wkt='+wkt+'&capa='+capa + '&zoomActual=' + zoomActual);
-            return;
+            url = 'consultapunto.php?wkt='+wkt+'&capa='+capa + '&zoomActual=' + zoomActual;
+
+            $(".modal-consulta-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+
+            $("#consulta").modal("show");
+
+            //window.open('consultapunto.php?wkt='+wkt+'&capa='+capa + '&zoomActual=' + zoomActual);
+            //return;
 
         }else{
             //es un poligono en la forma [ [ [lon,lat],[lon,lat],....] ]
@@ -512,9 +518,17 @@ var consultar = function(coordinate, capa){
             for(var i=0;i<coordinate[0].length - 1;i++){
                 wkt+=coordinate[0][i][0]+ ' ' + coordinate[0][i][1]+ ',';
             }
-            wkt+=coordinate[0][0][0]+' '+coordinate[0][0][1]+'))'
+            wkt+=coordinate[0][0][0]+' '+coordinate[0][0][1]+'))';
 
-            window.open('consulta.php?wkt='+wkt+'&capa='+capa);return;
+            url = 'consulta.php?wkt='+wkt+'&capa='+capa;
+            
+            //$("#consulta").html('<object width="100%" height="100%" type="text/html" data="url" ></object>').foundation("open");
+
+            $(".modal-consulta-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+
+            $("#consulta").modal("show");
+
+            //window.open('consulta.php?wkt='+wkt+'&capa='+capa);return;
 
         }
         console.log(wkt);
@@ -582,8 +596,15 @@ function insertarDatos() {
 
 
 
-        window.open('insertar.php?punto=' + punto + '&nombre=' + nombre + '&tipo=' + tipo + '&situacion=' + situacion + '&precision=' + precision + '&fuente=' + fuente +  '&operador=' + operador + '&responsable=' + responsable + '&cargo=' + cargo + '_self');
-        return; 
+        url = 'insertar.php?punto=' + punto + '&nombre=' + nombre + '&tipo=' + tipo + '&situacion=' + situacion + '&precision=' + precision + '&fuente=' + fuente +  '&operador=' + operador + '&responsable=' + responsable + '&cargo=' + cargo;
+
+        $(".modal-consulta-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+
+        $("#consulta").modal("show");
+
+
+        //window.open('insertar.php?punto=' + punto + '&nombre=' + nombre + '&tipo=' + tipo + '&situacion=' + situacion + '&precision=' + precision + '&fuente=' + fuente +  '&operador=' + operador + '&responsable=' + responsable + '&cargo=' + cargo + '_self');
+        //return; 
 
         // jQuery.ajax({
         //     url:'consulta.php',
@@ -602,6 +623,13 @@ function insertarDatos() {
 
 
 
+function mostrarInsercionExitosa(){
+    //console.log("Llama a funcion mostrarModal()");
+    //$("#add-card").modal("hide");
+    //console.log("Llegó a esconder primer modal");
+    $("#insercionExitosa").modal("show");
+    //console.log("Llegó a abrir segunda modal");
+}
 
 
 
@@ -1189,3 +1217,29 @@ window.onload = function() {
 //     }
 // }  
 
+
+
+// var capaLeyenda;
+
+// function mostrarModalLeyenda(boton) {
+
+//     console.log("Entra a la funcion mostrarModalLeyenda()");
+
+//     for (j=2; layer = map.getLayers().getArray()[j]; j++){
+//         if (layer.get("name") == boton.id.slice(4)){
+//             capaLeyenda = layer.get("name");
+//         }
+//     }
+
+//     console.log(capaLeyenda);
+
+//     var urlLeyenda = 'localhost/cgi-bin/qgis_mapserv.fcgi?map=/var/www/html/integrador/integrador.qgz&SERVICE=WMS&REQUEST=GetLegendGraphics&FORMAT=image/png&LAYERS=' + capaLeyenda;
+ 
+//     var linea = '<img src="' + urlLeyenda + '">';
+
+//     var pagina = '<!doctype html> <html lang="en"></head><body>' + linea + '</body>';
+
+//     $(".modal-leyenda-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="'+urlLeyenda+'"></iframe>');
+
+//     $("#modal-leyenda").modal("show");
+// }

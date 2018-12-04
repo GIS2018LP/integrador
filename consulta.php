@@ -17,7 +17,7 @@ geom
 EOD;
 
 
-echo $query;
+//echo $query;
 $result = pg_query($query);
 
 $nro_campos = pg_num_fields($result);
@@ -28,7 +28,7 @@ while ($i < $nro_campos) {
 	$fieldName = pg_field_name($result, $i); 
 	
 	if($fieldName!='geom'){
-		$header.= '<td>' . $fieldName .'</td>'; 
+		$header.= '<th>' . $fieldName .'</th>'; 
 	}
 	$i++; 
 	
@@ -55,17 +55,30 @@ while ($row = pg_fetch_row($result)) {
 ?>
 <!doctype html>
 <html lang="en">
-		<style>
-			body, table{
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 11px;			
-			}
-		</style>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th, td {
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even){background-color: #f2f2f2}
+
+		th {
+			background-color: #ffcc33;
+			color: white;
+		}
+		tr:hover {background-color:#ffebcc;}
+	</style>
 	</head>
 <body>
 
 <h3>Nro. Registros: <?php echo $nro_registros;?></h3>
-<table border=1 cellpading=0 cellspacing=0>
+<table cellpading=0 cellspacing=0>
 <?php echo $header ?>
 <?php echo $cuerpo ?>
 </table>

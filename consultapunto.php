@@ -9,6 +9,15 @@ $zoomActual =  $_GET['zoomActual'];
 $link= pg_connect("host=localhost user=user password=user dbname=integrador");
 
 
+if ($zoomActual <= 3){
+	$query=<<<EOD
+	SELECT * FROM $capa 
+	WHERE 
+	ST_DWithin(ST_geomfromtext('$wkt',4326), $capa.geom, 1)
+EOD;
+}
+
+
 switch ($zoomActual){
 	case 4:
 	$query=<<<EOD
@@ -45,15 +54,22 @@ break;
 	ST_DWithin(ST_geomfromtext('$wkt',4326), $capa.geom, 0.03)
 EOD;
 break;
-}
-
-
-
-if ($zoomActual >= 9){
+	case 9:
 	$query=<<<EOD
 	SELECT * FROM $capa 
 	WHERE 
 	ST_DWithin(ST_geomfromtext('$wkt',4326), $capa.geom, 0.01)
+EOD;
+break;
+}
+
+
+
+if ($zoomActual >= 10){
+	$query=<<<EOD
+	SELECT * FROM $capa 
+	WHERE 
+	ST_DWithin(ST_geomfromtext('$wkt',4326), $capa.geom, 0.0025)
 EOD;
 }
 
@@ -99,7 +115,7 @@ EOD;
 
 
 
-echo $query;
+//echo $query;
 $result = pg_query($query);
 
 $nro_campos = pg_num_fields($result);
@@ -110,7 +126,7 @@ while ($i < $nro_campos) {
 	$fieldName = pg_field_name($result, $i); 
 	
 	if($fieldName!='geom'){
-		$header.= '<td>' . $fieldName .'</td>'; 
+		$header.= '<th>' . $fieldName .'</th>'; 
 	}
 	$i++; 
 	
@@ -137,18 +153,68 @@ while ($row = pg_fetch_row($result)) {
 ?>
 <!doctype html>
 <html lang="en">
-		<style>
-			body, table{
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 11px;			
-			}
-		</style>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th, td {
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even){background-color: #f2f2f2}
+
+		th {
+			background-color: #ffcc33;
+			color: white;
+		}
+		tr:hover {background-color:#ffebcc;}
+	</style>
 	</head>
 <body>
 
 <h3>Nro. Registros: <?php echo $nro_registros;?></h3>
-<table border=1 cellpading=0 cellspacing=0>
+<table cellpading=0 cellspacing=0>
 <?php echo $header ?>
 <?php echo $cuerpo ?>
 </table>
+
+
+<!--
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+	-->
+
+
+
 </body>
