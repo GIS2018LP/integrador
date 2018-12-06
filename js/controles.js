@@ -298,7 +298,7 @@ var formatLength = function (line) {
     var length = ol.Sphere.getLength(line);
     var output;
     if (length < 0.5) {
-        output = (Math.round(length * 1000000) / 100) +
+        output = (Math.round(length * 10000000) / 100) +
             ' ' + 'm';
     } else {
         output = (Math.round(length * 10000) / 100) +
