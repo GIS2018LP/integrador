@@ -297,12 +297,12 @@ var draw; // global so we can remove it later
 var formatLength = function (line) {
     var length = ol.Sphere.getLength(line);
     var output;
-    if (length > 100) {
-        output = (Math.round(length / 1000 * 100) / 100) +
-            ' ' + 'km';
-    } else {
+    if (length < 0.5) {
         output = (Math.round(length * 1000000) / 100) +
             ' ' + 'm';
+    } else {
+        output = (Math.round(length * 10000) / 100) +
+            ' ' + 'km';
     }
     return output;
 };

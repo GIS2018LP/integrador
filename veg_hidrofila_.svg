@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="7.1399999mm"
+   height="6.8000002mm"
+   viewBox="0 0 7.1399998 6.8000001"
+   version="1.1"
+   id="svg4617"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="veg_hidrofila_.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="16"
+     inkscape:cx="18.129341"
+     inkscape:cy="15.694823"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="926"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:measure-start="3.66614,21.2775"
+     inkscape:measure-end="41.875,21.375"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs4611">
+    <inkscape:path-effect
+       effect="powerstroke"
+       id="path-effect7684"
+       is_visible="true"
+       offset_points="0,0.13229166"
+       sort_points="true"
+       interpolator_type="CubicBezierJohan"
+       interpolator_beta="0.2"
+       start_linecap_type="zerowidth"
+       linejoin_type="extrp_arc"
+       miter_limit="4"
+       end_linecap_type="zerowidth" />
+  </defs>
+  <metadata
+     id="metadata4614">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1"
+     transform="translate(0,-287)">
+    <g
+       transform="translate(5,-3.2000001)"
+       id="g11007">
+      <path
+         id="path11001"
+         inkscape:label="Triangle"
+         style="fill:#00a64f;fill-opacity:1;stroke:#00a64f;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 0.97000053,297 H 1.1569995 l -0.093503,-1.8 z"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         d="M 0.4821755,297 H 0.66999938 L 0.53360322,296.35613 4.4613017e-7,295.5 0.36554513,296.218 Z"
+         style="fill:#00a64f;fill-opacity:1;stroke:#00a64f;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:label="Triangle"
+         id="path11003"
+         sodipodi:nodetypes="cccccc" />
+      <path
+         inkscape:connector-curvature="0"
+         d="M 1.6578244,297 H 1.4700006 L 1.6063967,296.35613 2.1399995,295.5 1.7744548,296.218 Z"
+         style="fill:#00a64f;fill-opacity:1;stroke:#00a64f;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:label="Triangle"
+         id="path11005"
+         sodipodi:nodetypes="cccccc" />
+    </g>
+    <g
+       id="g10963"
+       transform="translate(0,-8.2000007)">
+      <path
+         inkscape:connector-curvature="0"
+         d="M 0.97000053,297 H 1.1569995 l -0.093503,-1.8 z"
+         style="fill:#00a64f;fill-opacity:1;stroke:#00a64f;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:label="Triangle"
+         id="path7112" />
+      <path
+         sodipodi:nodetypes="cccccc"
+         id="path7671"
+         inkscape:label="Triangle"
+         style="fill:#00a64f;fill-opacity:1;stroke:#00a64f;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 0.4821755,297 H 0.66999938 L 0.53360322,296.35613 4.4613017e-7,295.5 0.36554513,296.218 Z"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="cccccc"
+         id="path7671-6"
+         inkscape:label="Triangle"
+         style="fill:#00a64f;fill-opacity:1;stroke:#00a64f;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 1.6578244,297 H 1.4700006 L 1.6063967,296.35613 2.1399995,295.5 1.7744548,296.218 Z"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>
